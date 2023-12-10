@@ -1,0 +1,44 @@
+esphome:
+  name: esp-ir-01
+  friendly_name: esp-ir-01
+
+esp8266:
+  board: nodemcuv2
+
+# Enable logging
+logger:
+
+#Do not forget to add Api and OTA Key here
+# Enable Home Assistant API
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+web_server:
+  port: 80
+
+remote_transmitter:
+  pin: D2
+  carrier_duty_percent: 50%
+
+# Individual switches
+button:
+  - platform: template
+    name: "Lichterkette an"
+    icon: mdi:LightbulbOn
+    on_press:
+      - remote_transmitter.transmit_pronto:
+          data: "0000 0073 0000 0024 013e 009c 0014 0012 0015 0011 0015 0011 0015 0011 0015 0011 0017 0011 0015 0011 0015 0011 0017 0037 0015 0039 0015 0039 0014 0039 0014 003a 0014 003a 0014 003a 0014 0037 0015 0039 0015 0012 0015 0037 0015 0012 0015 0011 0015 0011 0017 0037 0015 0011 0017 0011 0014 0039 0014 0013 0014 0039 0014 003a 0014 003a 0014 0011 0017 0037 0015 0579 013f 004c 0015 0e4a"
+  - platform: template
+    name: "Lichterkette aus"
+    icon: mdi:LightbulbOutline
+    on_press:
+      - remote_transmitter.transmit_pronto:
+          data: "0000 0073 0000 0024 013c 009e 0014 0012 0013 0013 0014 0013 0013 0013 0013 0013 0013 0014 0013 0013 0012 0014 0013 003b 0011 003d 0012 003b 0013 003a 0014 003a 0013 003a 0014 003a 0014 003a 0013 003b 0012 003b 0013 003b 0013 0012 0014 0013 0013 0013 0013 003b 0013 0013 0014 0012 0014 0013 0013 0013 0011 003d 0012 003b 0013 003b 0012 0014 0013 003b 0013 0579 013d 004f 0012 0e4a"
+  - platform: template
+    name: "Programm 8"
+    icon: mdi:LightbulbOutline
+    on_press:
+      - remote_transmitter.transmit_pronto:
+          data: "0000 0073 0000 0024 013e 009c 0015 0011 0017 0011 0015 0012 0014 0012 0014 0012 0015 0011 0015 0012 0014 0012 0014 0039 0014 003a 0014 0039 0014 003a 0014 003a 0014 0037 0015 0039 0015 0039 0015 0012 0015 0037 0015 0039 0015 0037 0015 0039 0014 0012 0015 0039 0014 0012 0015 0039 0014 0012 0015 0013 0013 0013 0013 0013 0014 0037 0015 0011 0017 0037 0015 0579 013e 004c 0015 0e4a"
