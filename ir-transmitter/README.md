@@ -1,7 +1,7 @@
 # Simple IR Blaster example
 
-# Boradlink converter
-To convert Broadlink codes to ESP Home Compatible commands use on Linux:
+# Broadlink converter
+To convert Broadlink codes to ESP Home compatible IR-Commands use on Linux:
 
 ```
 pip install irgen
